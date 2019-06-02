@@ -11,4 +11,17 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
+//Få data från databasen till hemsidan
+function getData()
+{
+    $data['data'] = DB::table('vapen')->get();
 
+    if(count($data[0]) > 0)
+    {
+        return view('welcome' ,$data);
+    }
+    else
+    {
+        return view('welcome');
+    }
+}
